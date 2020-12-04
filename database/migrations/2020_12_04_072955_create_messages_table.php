@@ -13,8 +13,9 @@ class CreateMessagesTable extends Migration
             $table->id();
             $table->foreignIdFor(Contact::class);
             $table->text('message');
-            $table->string('photo')->nullable();
+            $table->string('image')->nullable();
             $table->enum('direction', ['in', 'out']);
+            $table->date('send_at');
             $table->timestamps();
         });
     }

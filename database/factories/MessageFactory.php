@@ -16,6 +16,7 @@ class MessageFactory extends Factory
             'contact_id' => Contact::factory(),
             'message'    => $this->faker->sentence,
             'direction'  => $this->faker->randomElement(['in', 'out']),
+            'send_at'    => $this->faker->date(),
         ];
     }
 }
