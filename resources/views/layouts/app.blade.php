@@ -10,10 +10,13 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
     <title>PHP Conference BR</title>
 
+    @livewireStyles
 </head>
 
 <body>
 {{ $slot }}
+
+@livewireScripts
 </body>
 
 </html>
