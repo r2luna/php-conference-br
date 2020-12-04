@@ -93,7 +93,7 @@
 
                 <div class="bg-gray-100 px-4 py-4 flex items-center space-x-4">
                     <button>
-                        <a href="?image1">
+                        <a href="?image=1">
                             <x-icons.emoji/>
                         </a>
                     </button>
@@ -104,7 +104,8 @@
                     </button>
 
                     <div class="flex-1">
-                        <input class="w-full border rounded px-2 py-2 focus:outline-none" type="text"/>
+                        <input class="w-full rounded-full px-4 py-2 focus:outline-none text-sm text-gray-600 "
+                               type="text" placeholder="Type a message"/>
                     </div>
 
                     <button>
