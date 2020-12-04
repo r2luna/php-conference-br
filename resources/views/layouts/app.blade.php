@@ -8,11 +8,14 @@
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <title>PHP Conference Brasil</title>
+    <title>PHP Conference BR</title>
+
+    @livewireStyles
 </head>
 
 <body>
 {{ $slot }}
+@livewireScripts
 </body>
 
 </html>
