@@ -4,7 +4,7 @@
 
     <div class="container mx-auto" style="margin-top: -128px;">
         <div class="py-6 h-screen">
-            <div class="flex border border-gray-300 rounded shadow-lg h-full">
+            <div class="flex border border-gray-100 rounded shadow-lg h-full">
                 {{ $slot }}
             </div>
         </div>
