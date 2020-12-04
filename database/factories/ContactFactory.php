@@ -12,12 +12,9 @@ class ContactFactory extends Factory
 
     public function definition()
     {
-        $results = Http::get('https://randomuser.me/api/')->json();
-        $faker   = $results['results'][0];
-
         return [
-            'name'  => $faker['name']['first'] . ' ' . $faker['name']['last'],
-            'photo' => $faker['picture']['medium'],
+            'name'  => $this->faker->name,
+            'photo' => 'http://i.pravatar.cc/128?img=' . collect(range(1, 70))->random(),
         ];
     }
 }
