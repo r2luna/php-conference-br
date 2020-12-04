@@ -15,18 +15,18 @@ class Contact extends Model
         return $this->hasMany(Message::class);
     }
 
+    public function lastMessage()
+    {
+        return $this->belongsTo(Message::class);
+    }
+
     public function scopeWithLastMessage(Builder $query)
     {
         $query->addSelect([
-            'last_message' => Message::query()->select('message')
+            'last_message_id' => Message::query()->select('id')
                 ->whereColumn('contact_id', 'contacts.id')
                 ->latest()
                 ->limit(1),
-            'last_time'    => Message::query()->select('created_at')
-                ->whereColumn('contact_id', 'contacts.id')
-                ->latest()
-                ->limit(1),
-        ])
-            ->withCasts(['last_time' => 'datetime']);
+        ])->with('lastMessage');
     }
 }
