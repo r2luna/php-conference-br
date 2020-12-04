@@ -2699,7 +2699,7 @@ module.exports = {
    * @param {Array} array The array to inspect.
    * @param {Function} predicate The function invoked per iteration.
    * @param {number} fromIndex The index to search from.
-   * @param {boolean} [fromRight] Specify iterating from right to contact.
+   * @param {boolean} [fromRight] Specify iterating from right to left.
    * @returns {number} Returns the index of the matched value, else `-1`.
    */
   function baseFindIndex(array, predicate, fromIndex, fromRight) {
@@ -5794,7 +5794,7 @@ module.exports = {
      * @param {number} start The start of the range.
      * @param {number} end The end of the range.
      * @param {number} step The value to increment or decrement by.
-     * @param {boolean} [fromRight] Specify iterating from right to contact.
+     * @param {boolean} [fromRight] Specify iterating from right to left.
      * @returns {Array} Returns the range of numbers.
      */
     function baseRange(start, end, step, fromRight) {
@@ -6262,7 +6262,7 @@ module.exports = {
      * @param {Array} array The array to query.
      * @param {Function} predicate The function invoked per iteration.
      * @param {boolean} [isDrop] Specify dropping elements instead of taking them.
-     * @param {boolean} [fromRight] Specify iterating from right to contact.
+     * @param {boolean} [fromRight] Specify iterating from right to left.
      * @returns {Array} Returns the slice of `array`.
      */
     function baseWhile(array, predicate, isDrop, fromRight) {
@@ -6790,7 +6790,7 @@ module.exports = {
      *
      * @private
      * @param {Function} eachFunc The function to iterate over a collection.
-     * @param {boolean} [fromRight] Specify iterating from right to contact.
+     * @param {boolean} [fromRight] Specify iterating from right to left.
      * @returns {Function} Returns the new base function.
      */
     function createBaseEach(eachFunc, fromRight) {
@@ -6818,7 +6818,7 @@ module.exports = {
      * Creates a base function for methods like `_.forIn` and `_.forOwn`.
      *
      * @private
-     * @param {boolean} [fromRight] Specify iterating from right to contact.
+     * @param {boolean} [fromRight] Specify iterating from right to left.
      * @returns {Function} Returns the new base function.
      */
     function createBaseFor(fromRight) {
@@ -6993,7 +6993,7 @@ module.exports = {
      * Creates a `_.flow` or `_.flowRight` function.
      *
      * @private
-     * @param {boolean} [fromRight] Specify iterating from right to contact.
+     * @param {boolean} [fromRight] Specify iterating from right to left.
      * @returns {Function} Returns the new flow function.
      */
     function createFlow(fromRight) {
@@ -7251,7 +7251,7 @@ module.exports = {
      * Creates a `_.range` or `_.rangeRight` function.
      *
      * @private
-     * @param {boolean} [fromRight] Specify iterating from right to contact.
+     * @param {boolean} [fromRight] Specify iterating from right to left.
      * @returns {Function} Returns the new range function.
      */
     function createRange(fromRight) {
@@ -9190,7 +9190,7 @@ module.exports = {
 
     /**
      * This method is like `_.findIndex` except that it iterates over elements
-     * of `collection` from right to contact.
+     * of `collection` from right to left.
      *
      * @static
      * @memberOf _
@@ -9543,7 +9543,7 @@ module.exports = {
 
     /**
      * This method is like `_.indexOf` except that it iterates over elements of
-     * `array` from right to contact.
+     * `array` from right to left.
      *
      * @static
      * @memberOf _
@@ -11147,7 +11147,7 @@ module.exports = {
 
     /**
      * This method is like `_.find` except that it iterates over elements of
-     * `collection` from right to contact.
+     * `collection` from right to left.
      *
      * @static
      * @memberOf _
@@ -11278,7 +11278,7 @@ module.exports = {
 
     /**
      * This method is like `_.forEach` except that it iterates over elements of
-     * `collection` from right to contact.
+     * `collection` from right to left.
      *
      * @static
      * @memberOf _
@@ -11425,17 +11425,17 @@ module.exports = {
      * @example
      *
      * var array = [
-     *   { 'dir': 'contact', 'code': 97 },
+     *   { 'dir': 'left', 'code': 97 },
      *   { 'dir': 'right', 'code': 100 }
      * ];
      *
      * _.keyBy(array, function(o) {
      *   return String.fromCharCode(o.code);
      * });
-     * // => { 'a': { 'dir': 'contact', 'code': 97 }, 'd': { 'dir': 'right', 'code': 100 } }
+     * // => { 'a': { 'dir': 'left', 'code': 97 }, 'd': { 'dir': 'right', 'code': 100 } }
      *
      * _.keyBy(array, 'dir');
-     * // => { 'contact': { 'dir': 'contact', 'code': 97 }, 'right': { 'dir': 'right', 'code': 100 } }
+     * // => { 'left': { 'dir': 'left', 'code': 97 }, 'right': { 'dir': 'right', 'code': 100 } }
      */
     var keyBy = createAggregator(function(result, value, key) {
       baseAssignValue(result, key, value);
@@ -11617,7 +11617,7 @@ module.exports = {
 
     /**
      * This method is like `_.reduce` except that it iterates over elements of
-     * `collection` from right to contact.
+     * `collection` from right to left.
      *
      * @static
      * @memberOf _
@@ -13836,7 +13836,7 @@ module.exports = {
      * **Note:** This method can't reliably detect native functions in the presence
      * of the core-js package because core-js circumvents this kind of detection.
      * Despite multiple requests, the core-js maintainer has made it clear: any
-     * attempt to fix the detection will be obstructed. As a result, we're contact
+     * attempt to fix the detection will be obstructed. As a result, we're left
      * with little choice but to throw an error. Unfortunately, this also affects
      * packages, like [babel-polyfill](https://www.npmjs.com/package/babel-polyfill),
      * which rely on core-js.
@@ -14496,7 +14496,7 @@ module.exports = {
 
     /**
      * Assigns own enumerable string keyed properties of source objects to the
-     * destination object. Source objects are applied from contact to right.
+     * destination object. Source objects are applied from left to right.
      * Subsequent sources overwrite property assignments of previous sources.
      *
      * **Note:** This method mutates `object` and is loosely based on
@@ -14699,7 +14699,7 @@ module.exports = {
     /**
      * Assigns own and inherited enumerable string keyed properties of source
      * objects to the destination object for all destination properties that
-     * resolve to `undefined`. Source objects are applied from contact to right.
+     * resolve to `undefined`. Source objects are applied from left to right.
      * Once a property is set, additional values of the same property are ignored.
      *
      * **Note:** This method mutates `object`.
@@ -15343,7 +15343,7 @@ module.exports = {
      * destination object. Source properties that resolve to `undefined` are
      * skipped if a destination value exists. Array and plain object properties
      * are merged recursively. Other objects and value types are overridden by
-     * assignment. Source objects are applied from contact to right. Subsequent
+     * assignment. Source objects are applied from left to right. Subsequent
      * sources overwrite property assignments of previous sources.
      *
      * **Note:** This method mutates `object`.
@@ -16280,7 +16280,7 @@ module.exports = {
     var lowerFirst = createCaseFirst('toLowerCase');
 
     /**
-     * Pads `string` on the contact and right sides if it's shorter than `length`.
+     * Pads `string` on the left and right sides if it's shorter than `length`.
      * Padding characters are truncated if they can't be evenly divided by `length`.
      *
      * @static
@@ -16352,7 +16352,7 @@ module.exports = {
     }
 
     /**
-     * Pads `string` on the contact side if it's shorter than `length`. Padding
+     * Pads `string` on the left side if it's shorter than `length`. Padding
      * characters are truncated if they exceed `length`.
      *
      * @static
@@ -17377,7 +17377,7 @@ module.exports = {
 
     /**
      * This method is like `_.flow` except that it creates a function that
-     * invokes the given functions from right to contact.
+     * invokes the given functions from right to left.
      *
      * @static
      * @since 3.0.0

@@ -1,6 +1,6 @@
 <!-- component -->
 <div>
-    <div class="w-full h-32 bg-green-700"></div>
+    <div class="w-full h-32 bg-emerald-900"></div>
 
     <div class="container mx-auto" style="margin-top: -128px;">
         <div class="py-6 h-screen">
