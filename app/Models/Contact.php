@@ -17,7 +17,7 @@ class Contact extends Model
 
     public function lastMessage()
     {
-        return $this->belongsTo(Message::class);
+        return $this->belongsTo(Message::class, 'last_message_id');
     }
 
     public function scopeWithLastMessage(Builder $query)

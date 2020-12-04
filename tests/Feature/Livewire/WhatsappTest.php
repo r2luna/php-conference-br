@@ -55,6 +55,13 @@ class WhatsappTest extends TestCase
             ->assertSet('selectedContact.id', '1');
     }
 
+
+
+
+
+
+
+
     /** @test */
     public function text_message_should_be_required()
     {

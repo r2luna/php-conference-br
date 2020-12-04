@@ -21,5 +21,5 @@
         </div>
     </div>
 
-
+    <livewire:messages :contact="$selectedContact" />
 </x-whatsapp>

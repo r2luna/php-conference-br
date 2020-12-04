@@ -1,331 +1,61 @@
-# PHP Conference BR - Livewire
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
-## Step 1 - Install Livewire
+<p align="center">
+<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+</p>
 
-``` bash
-composer require livewire/livewire
-```
+## About Laravel
 
-## Step 2 - Add @livewire to layouts/app.blade.php
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-`layouts/app.blade.php`
-``` html
-<head>
-    ...
-    @livewireStyles
-</head>
+- [Simple, fast routing engine](https://laravel.com/docs/routing).
+- [Powerful dependency injection container](https://laravel.com/docs/container).
+- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
+- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
+- [Robust background job processing](https://laravel.com/docs/queues).
+- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-<body>
-....
-@livewireScripts
-</body>
+Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-</html>
-```
+## Learning Laravel
 
-## Step 2.1 - Show Example component
+Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
+If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
------
+## Laravel Sponsors
 
-## Step 2.2 - Show tests
+We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
 
--- Follow tests
+### Premium Partners
 
+- **[Vehikl](https://vehikl.com/)**
+- **[Tighten Co.](https://tighten.co)**
+- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
+- **[64 Robots](https://64robots.com)**
+- **[Cubet Techno Labs](https://cubettech.com)**
+- **[Cyber-Duck](https://cyber-duck.co.uk)**
+- **[Many](https://www.many.co.uk)**
+- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
+- **[DevSquad](https://devsquad.com)**
+- **[OP.GG](https://op.gg)**
 
-## Step 3 - Create Livewire component
+## Contributing
 
-``` bash
-php artisan make:livewire whatsapp
-```
+Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-## Step 4 - Link route to livewire component
+## Code of Conduct
 
-``` php
-Route::get('whatsapp', \App\Http\Livewire\Whatsapp::class);
-```
+In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-## Step 5 - Whatsapp Blade
+## Security Vulnerabilities
 
-Copy everything from `livewire.blade.php` to `whatsapp.blade.php`
-``` php
-<x-whatsapp>
-    <div class="w-1/3 border flex flex-col">
-        <x-whatsapp.contacts.header/>
+If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-        <div class="py-2 px-2 bg-gray-100">
-            <x-whatsapp.contacts.search />
-        </div>
+## License
 
-        <div class="bg-white flex-1 overflow-auto">
-            <x-whatsapp.contact
-                    class="bg-gray-100"
-                    contact="Arnold Schwarzenegger"
-                    photo="https://www.biography.com/.image/t_share/MTE5NDg0MDU1MTIyMTE4MTU5/arnold-schwarzenegger-9476355-1-402.jpg"
-                    time="12:45 pm"
-                    message="Tudo bom?"
-                />
-
-                <x-whatsapp.contact
-                    class="bg-white"
-                    contact="Russell Crowe"
-                    photo="https://www.famousbirthdays.com/headshots/russell-crowe-6.jpg"
-                    time="12:45 pm"
-                    message="Tranquilo aí?"
-                />
-
-            @foreach($contacts as $contact)
-                <x-whatsapp.contact
-                    wire:click="selectContact({{ $contact->id }})"
-                    wire:key="{{ $contact->id }}"
-                    class="{{ $contact->id == $selectedContact->id ? 'bg-gray-100' : 'bg-white'}}"
-                    :contact=" $contact->name"
-                    :photo="$contact->photo"
-                    :time="$contact->lastMessage->created_at->diffForHumans()"
-                    :message="$contact->lastMessage->message"
-                />
-            @endforeach
-        </div>
-
-    </div>
-
-
-</x-whatsapp>
-
-```
-
-``` php
-<x-whatsapp>
-    <div class="w-1/3 border flex flex-col">
-        <x-whatsapp.contacts.header/>
-
-        <div class="py-2 px-2 bg-gray-100">
-            <x-whatsapp.contacts.search />
-        </div>
-
-        <div class="bg-white flex-1 overflow-auto">
-            @foreach($contacts as $contact)
-                <x-whatsapp.contact
-                    wire:key="{{ $contact->id }}"
-                    {{-- class="{{ $contact->id == $selectedContact->id ? 'bg-gray-100' : 'bg-white'}}" --}}
-                    :contact=" $contact->name"
-                    :photo="$contact->photo"
-                    :time="$contact->lastMessage->created_at->diffForHumans()"
-                    :message="$contact->lastMessage->message"
-                />
-            @endforeach
-        </div>
-
-    </div>
-
-
-</x-whatsapp>
-
-```
-
-`Livewire\Messages.php`
-
-``` php
-<?php
-
-namespace App\Http\Livewire;
-
-use App\Models\Contact;
-use Illuminate\Database\Eloquent\Builder;
-use Livewire\Component;
-
-class Whatsapp extends Component
-{
-    public ?string $search = '';
-
-    public ?Contact $selectedContact = null;
-
-    public function render()
-    {
-        $contacts = Contact::query()
-            ->when($this->search, fn(Builder $query) => $query->where('name', 'like', "%{$this->search}%"))
-            ->withLastMessage()
-            ->get();
-
-        if (!$this->selectedContact) {
-            $this->selectedContact = $contacts->first();
-        }
-
-        return view('livewire.whatsapp', [
-            'contacts' => $contacts,
-        ]);
-    }
-
-    public function selectContact($id)
-    {
-        $this->selectedContact = Contact::query()->find($id);
-
-        $this->emit('contactSelected', $id);
-        $this->dispatchBrowserEvent('contact-selected');
-    }
-}
-
-```
-
-
-<?php
-
-namespace App\Http\Livewire;
-
-use App\Models\Contact;
-use Illuminate\Http\UploadedFile;
-use Livewire\Component;
-use Livewire\WithFileUploads;
-
-class Messages extends Component
-{
-    use WithFileUploads;
-
-    /** @var UploadedFile|null */
-    public $image;
-
-    public ?Contact $contact = null;
-
-    public ?string $text = '';
-
-    public $listeners = ['contactSelected'];
-
-    public function render()
-    {
-        return view('livewire.messages');
-    }
-
-    public function contactSelected($id)
-    {
-        $this->contact = Contact::query()->find($id);
-    }
-
-    public function updatedImage()
-    {
-        $this->validate([
-            'image' => 'image|max:1024',
-        ]);
-    }
-
-    public function cancel()
-    {
-        $this->image = null;
-    }
-
-    public function save()
-    {
-        if ($this->image) {
-            $filename = $this->image->store('/', 'public');
-        }
-
-        $this->contact->messages()->create([
-            'message'   => $this->text,
-            'direction' => 'out',
-            'send_at'   => now(),
-            'image'     => $filename ?? null,
-        ]);
-
-        $this->text  = '';
-        $this->image = null;
-
-        $this->dispatchBrowserEvent('message-send');
-    }
-}
-
-
-
-
-<form wire:submit.prevent="save" class="border flex flex-col bg-gray-100 w-2/3"
-      x-data
-      @contact-selected.window="$refs.scroll.scrollTop = $refs.scroll.scrollHeight"
-      @message-send.window="$refs.scroll.scrollTop = $refs.scroll.scrollHeight"
-      x-init="
-        $refs.scroll.scrollTop = $refs.scroll.scrollHeight
-      ">
-
-    <x-whatsapp.conversation.header
-        :contact="$contact->name"
-        :photo="$contact->photo"
-    />
-
-    @if($this->image)
-        <div class="h-full bg-gray-200">
-            <div class="flex bg-teal-500 text-white text-lg px-6 py-3 space-x-8 items-center">
-                <button wire:click="cancel">
-                    <x-icons.x class="h-5 w-5 text-white"/>
-                </button>
-                <span>Preview</span>
-            </div>
-
-            <div class="bg-gray-100 flex flex-col h-3/4 justify-center w-full py-4">
-                <img class="h-5/6 m-auto"
-                     src="{{ $image->temporaryUrl() }}"
-                     alt="Image">
-
-                <input type="text"
-                       class="border-0 border-b-2 border-teal-500 w-1/2 mx-auto bg-gray-100 focus:outline-none"
-                       placeholder="Add a caption..." wire:model="text"/>
-            </div>
-
-            <div class="relative">
-                <button wire:click="save"
-                        class="hover:bg-emerald-500 -mt-8 absolute bg-emerald-300 flex h-16 items-center justify-center mr-24 right-0 rounded-full w-16">
-                    <x-icons.airplane class="text-white h-8 w-8 "/>
-                </button>
-            </div>
-        </div>
-
-    @else
-
-        <div class="flex-1 overflow-auto bg-warmGray-300" x-ref="scroll"
-        >
-            <div class="py-2 px-3">
-                @foreach($contact->messages()->orderBy('send_at')->get()->groupBy('send_at') as $day => $messages)
-                    <x-whatsapp.conversation.day :day="$day"/>
-
-                    @if($loop->first)
-                        <x-whatsapp.conversation.security-disclaimer/>
-                    @endif
-
-                    @foreach($messages as $message)
-                        <x-whatsapp.conversation.message
-                            :direction="$message->direction"
-                            :image="$message->image"
-                            :message="$message->message"
-                            :time="$message->created_at->format('h:i a')"
-                        />
-                    @endforeach
-
-                @endforeach
-            </div>
-        </div>
-
-
-        <div class="bg-gray-100 px-4 py-4 flex items-center space-x-4">
-            <button type="button">
-                <x-icons.emoji/>
-            </button>
-
-            <input type="file" id="attachment" class="hidden" accept="image/x-png,image/gif,image/jpeg"
-                   wire:model="image">
-            <button type="button" onclick="document.getElementById('attachment').click()">
-                <x-icons.attachment/>
-            </button>
-
-            <div class="flex-1">
-                <input class="w-full rounded-full px-4 py-2 focus:outline-none text-sm text-gray-600 "
-                       type="text" placeholder="Type a message" wire:model="text"/>
-            </div>
-
-            @if(strlen($text) > 0)
-                <button type="submit">
-                    <x-icons.airplane class="text-gray-400 h-7 w-7"/>
-                </button>
-            @else
-                <button type="button">
-                    <x-icons.mic/>
-                </button>
-            @endif
-        </div>
-    @endif
-</form>
+The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
