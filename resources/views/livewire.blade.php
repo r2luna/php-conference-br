@@ -68,22 +68,26 @@
 
                         <x-whatsapp.conversation.security-disclaimer/>
 
-                        <x-whatsapp.conversation.in
+                        <x-whatsapp.conversation.message
+                            direction="in"
                             message="Opa!"
                             time="12:45 pm"
                         />
 
-                        <x-whatsapp.conversation.in
+                        <x-whatsapp.conversation.message
+                            direction="in"
                             message="Tudo bom?"
                             time="12:46 pm"
                         />
 
-                        <x-whatsapp.conversation.out
+                        <x-whatsapp.conversation.message
+                            direction="out"
                             message="Oi Mano!"
                             time="12:50 pm"
                         />
 
-                        <x-whatsapp.conversation.in
+                        <x-whatsapp.conversation.message
+                            direction="in"
                             message="Olha que legal"
                             time="12:55 pm"
                             photo="https://webmeup.com/upload/blog/lead-image-105.png"

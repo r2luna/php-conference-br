@@ -1,4 +1,3 @@
-<!-- component -->
 <div>
     <div class="w-full h-32 bg-emerald-900"></div>
 
