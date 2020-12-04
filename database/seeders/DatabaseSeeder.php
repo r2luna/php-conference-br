@@ -2,17 +2,17 @@
 
 namespace Database\Seeders;
 
+use App\Models\Contact;
+use App\Models\Message;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     *
-     * @return void
-     */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        Contact::factory()
+            ->has(Message::factory()->count(rand(5, 10)))
+            ->count(4)
+            ->create();
     }
 }
