@@ -17,16 +17,6 @@ class Contact extends Model
 
     public function lastMessage()
     {
-        return $this->belongsTo(Message::class, 'last_message_id');
-    }
-
-    public function scopeWithLastMessage(Builder $query)
-    {
-        $query->addSelect([
-            'last_message_id' => Message::query()->select('id')
-                ->whereColumn('contact_id', 'contacts.id')
-                ->latest()
-                ->limit(1),
-        ])->with('lastMessage');
+        return $this->hasOne(Message::class)->latest();
     }
 }

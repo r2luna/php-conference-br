@@ -14,9 +14,8 @@ class Whatsapp extends Component
 
     public function render()
     {
-        $contacts = Contact::query()
+        $contacts = Contact::with('lastMessage')
             ->when($this->search, fn(Builder $query) => $query->where('name', 'like', "%{$this->search}%"))
-            ->withLastMessage()
             ->get();
 
         if (! $this->selectedContact) {
