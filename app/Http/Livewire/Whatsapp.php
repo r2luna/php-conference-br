@@ -29,7 +29,7 @@ class Whatsapp extends Component
 
     public function selectContact($id)
     {
-        $this->selectedContact = Contact::query()->find($id);
+        $this->selectedContact = Contact::firstOrFail($id);
 
         $this->emit('contactSelected', $id);
         $this->dispatchBrowserEvent('contact-selected');
