@@ -8,31 +8,38 @@ use Livewire\Component;
 
 class Whatsapp extends Component
 {
-    public ?string $search = '';
+    public string $search = '';
 
-    public ?Contact $selectedContact = null;
+    public object $contacts;
 
-    public function render()
+    public Contact $selectedContact;
+
+    public function mount()
     {
-        $contacts = Contact::query()
+        $this->search = '';
+
+        $this->contacts = Contact::with('lastMessage')->get();
+
+        $this->selectedContact = $this->contacts->first();
+    }
+
+    public function updatedSearch()
+    {
+        $this->contacts = Contact::with('lastMessage')
             ->when($this->search, fn(Builder $query) => $query->where('name', 'like', "%{$this->search}%"))
-            ->withLastMessage()
             ->get();
-
-        if (!$this->selectedContact) {
-            $this->selectedContact = $contacts->first();
-        }
-
-        return view('livewire.whatsapp', [
-            'contacts' => $contacts,
-        ]);
     }
 
     public function selectContact($id)
     {
-        $this->selectedContact = Contact::query()->find($id);
+        $this->selectedContact = Contact::firstOrFail($id);
 
         $this->emit('contactSelected', $id);
         $this->dispatchBrowserEvent('contact-selected');
+    }
+
+    public function render()
+    {
+        return view('livewire.whatsapp');
     }
 }
