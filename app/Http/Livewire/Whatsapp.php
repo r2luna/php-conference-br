@@ -19,7 +19,7 @@ class Whatsapp extends Component
             ->withLastMessage()
             ->get();
 
-        if (!$this->selectedContact) {
+        if (! $this->selectedContact) {
             $this->selectedContact = $contacts->first();
         }
 
